@@ -5,6 +5,10 @@
   font-family: sans-serif;
 }
 
+li {
+  list-style: none;
+}
+
 .container {
   display: flex;
 }
@@ -12,15 +16,17 @@
 .header {
   position: fixed;
   height: 100vh;
-  width: 72px;
+  width: 80px;
   background: rgb(38, 0, 255);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .content {
   position: absolute;
-  width: calc(100% - 72px);
+  width: calc(100% - 80px);
   background: brown;
   top: 0;
   right: 0;
@@ -28,4 +34,5 @@
 
 .home {
   height: 1200px;
+  position: relative;
 }

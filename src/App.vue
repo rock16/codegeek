@@ -2,7 +2,9 @@
   <div id="app">
     <div class="container">
       <div class="header">
+        <a href="#">Logo</a>
         <a href="#">Menu</a>
+        <a href="#">social</a>
       </div>
       <div class="content">
         <router-view />
