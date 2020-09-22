@@ -27,7 +27,6 @@ li {
 .content {
   position: absolute;
   width: calc(100% - 80px);
-  background: brown;
   top: 0;
   right: 0;
 }

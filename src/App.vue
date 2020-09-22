@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header">
         <a href="#">Logo</a>
-        <a href="#">Menu</a>
+        <div><a href="#">Menu</a></div>
         <a href="#">social</a>
       </div>
       <div class="content">

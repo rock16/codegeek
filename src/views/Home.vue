@@ -37,6 +37,12 @@
         </div>
       </div>
     </section>
+    <section class="tech_list">
+      <h2>Tech Stacks</h2>
+      <h1>Featured program</h1>
+      <p>Codegeek offers courses in some of the most in demand tech skills</p>
+    </section>
+    <section class="sponsors"></section>
   </div>
 </template>
 
