@@ -5,6 +5,14 @@
   font-family: sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
 li {
   list-style: none;
 }
@@ -17,7 +25,7 @@ li {
   position: fixed;
   height: 100vh;
   width: 80px;
-  background: rgb(38, 0, 255);
+  background: rgb(255, 250, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,8 +38,87 @@ li {
   top: 0;
   right: 0;
 }
+.header .ham_btn {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.header .ham_btn span {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 2px;
+  background: black;
+  transition: all 200ms ease-in-out;
+}
+.header .ham_btn span:nth-child(1) {
+  top: 30%;
+}
+.header .ham_btn span:nth-child(2) {
+  top: 40%;
+}
+.header .ham_btn span:nth-child(3) {
+  top: 50%;
+}
+.header.active .ham_btn span:nth-child(1) {
+  top: 40%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.header.active .ham_btn span:nth-child(2) {
+  display: none;
+}
+.header.active .ham_btn span:nth-child(3) {
+  top: 40%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.menu {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 0%;
+  height: 0%;
+  background: blue;
+  z-index: -3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 600ms ease-in-out;
+}
+.menu.active {
+  top: 0;
+  left: 80px;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
 
+.menu a {
+  position: relative;
+  display: inline-block;
+  margin: 20px 0px;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #f5f5f5;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background: #fff;
+  transition: all 300ms ease-in-out;
+  overflow: hidden;
+}
+.menu a:hover::after {
+  width: 100%;
+}
 .home {
-  height: 1200px;
   position: relative;
 }
