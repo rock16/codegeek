@@ -21,16 +21,19 @@
       </div>
       <div class="content">
         <router-view />
-        <div class="footer"></div>
+        <Footer />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Footer from "@/components/Footer.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    Footer,
+  },
   data() {
     return {
       isActive: false,
