@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 // firebase init - config here
 
@@ -20,9 +21,10 @@ firebase.initializeApp(firebaseConfig);
 //utils
 const db = firebase.firestore();
 const auth = firebase.auth();
+const cloudStore = firebase.storage().ref();
 
 // collection reference
-const usersCollection = db.collection("users");
+const courseCollection = db.collection("courses");
 
 // export utill and collections
-export { db, auth, usersCollection };
+export { db, auth, courseCollection, cloudStore };

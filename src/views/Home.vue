@@ -2,7 +2,7 @@
   <div class="home">
     <section class="hero">
       <video autoplay muted loop id="hero_video">
-        <source src="../assets/videos/videoBg4.mp4" type="video/mp4" />
+        <source :src="heroVideoUrl" type="video/mp4" />
       </video>
       <div class="hero_content">
         <div class="hero_header">
@@ -60,6 +60,17 @@ export default {
   name: "Home",
   components: {
     CourseList,
+  },
+  data() {
+    return {
+      heroVideoUrl:
+        "https://firebasestorage.googleapis.com/v0/b/codegeekxyz.appspot.com/o/videos%2FvideoBg4.mp4?alt=media&token=dc937cdc-7be0-4804-89f6-4a159d6e51aa",
+    };
+  },
+
+  mounted() {
+    console.log("dispatch");
+    this.$store.dispatch("fetchFeaturedCourses");
   },
 };
 </script>

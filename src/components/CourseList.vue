@@ -4,7 +4,7 @@
     <h1>Featured program</h1>
     <p>Codegeek offers courses in some of the most in demand tech skills</p>
     <ul class="course_list">
-      <li v-for="(course, index) in courses" :key="index">
+      <li v-for="(course, index) in featuredCourses" :key="index">
         <a href="#">
           <img :src="course.imgUrl" alt="course Image" class="course_img" />
           <div class="course">
@@ -21,33 +21,11 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Home",
-  data() {
-    return {
-      courses: [
-        {
-          title: "Frontend Web Development Bootcamp",
-          imgUrl: require("@/assets/images/courses/frontend.jpg"),
-          date: "Oct 5th, 2020",
-        },
-        {
-          title: "Introduction to programming in Python",
-          imgUrl: require("@/assets/images/courses/python.jpg"),
-          date: "Oct 17th, 2020",
-        },
-        {
-          title: "Android app Development with Flutter Bootcamp",
-          imgUrl: require("@/assets/images/courses/androidflutter.png"),
-          date: "comming soon",
-        },
-        {
-          title: "Robotics and Arduino Bootcamp",
-          imgUrl: require("@/assets/images/courses/robotics.jpg"),
-          date: "comming soon",
-        },
-      ],
-    };
+  computed: {
+    ...mapState(["featuredCourses"]),
   },
 };
 </script>
