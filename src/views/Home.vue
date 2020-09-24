@@ -4,6 +4,7 @@
       <video autoplay muted loop id="hero_video">
         <source src="../assets/videos/videoBg4.mp4" type="video/mp4" />
       </video>
+      <div class="overlay"></div>
       <div class="hero_content">
         <div class="hero_header">
           <a href="#"><img src="../assets/images/biglogo.svg" alt="Logo"/></a>
@@ -15,9 +16,11 @@
             <h1>Become a software Developer</h1>
             <p>
               Get everything you need to be a part of the driving force behind
-              Africa's technology ecosystem. Our courses are focused on emerging
-              technology in fields like Artificial Intelligence, Internet of
-              things, Robotics and Web technology.
+              Africa's technology ecosystem. <br />
+              <br />
+              Our courses are focused on emerging technology in fields like
+              Artificial Intelligence, Internet of things, Robotics and Web
+              technology.
             </p>
             <a href="#tech_courses" class="btn">See our courses</a>
           </div>
@@ -70,7 +73,7 @@ export default {
 
   mounted() {
     console.log("dispatch");
-    this.$store.dispatch("fetchFeaturedCourses");
+    //this.$store.dispatch("fetchFeaturedCourses");
   },
 };
 </script>
@@ -193,9 +196,20 @@ export default {
   video {
     display: none;
   }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("../assets/BgImage/bg2.jpg");
+    background-size: cover;
+    background-position: center;
+  }
   .hero_content {
     position: relative;
     display: block;
+    background: rgba(0, 0, 0, 0.6);
   }
   .hero_header {
     display: none;
