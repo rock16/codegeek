@@ -2,7 +2,7 @@
   <div class="home">
     <section class="hero">
       <video autoplay muted loop id="hero_video">
-        <source :src="heroVideoUrl" type="video/mp4" />
+        <source src="../assets/videos/videoBg4.mp4" type="video/mp4" />
       </video>
       <div class="hero_content">
         <div class="hero_header">
@@ -78,6 +78,7 @@ export default {
 <style type="text/css">
 .hero {
   position: relative;
+  height: 100%;
 }
 .hero_content {
   position: absolute;
@@ -109,6 +110,9 @@ export default {
 .changing_content {
   grid-column-start: 9;
   grid-column-end: 13;
+}
+.hero {
+  position: relative;
 }
 
 .hero_body > div {
@@ -180,5 +184,42 @@ export default {
 }
 .sponsors div .fib {
   padding-left: 32px;
+}
+.tech_courses {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  video {
+    display: none;
+  }
+  .hero_content {
+    position: relative;
+    display: block;
+  }
+  .hero_header {
+    display: none;
+  }
+  .hero_body {
+    place-items: center;
+  }
+  .call_to_action_content,
+  .changing_content {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    margin: 32px;
+  }
+  .vertical_line {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    .hero_body {
+      display: block;
+      padding: 16px;
+    }
+    .changing_content {
+      display: none;
+    }
+  }
 }
 </style>

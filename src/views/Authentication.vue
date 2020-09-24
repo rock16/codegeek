@@ -1,3 +1,5 @@
 <template>
-  <div id="auth"></div>
+  <div id="auth">
+    <router-view></router-view>
+  </div>
 </template>

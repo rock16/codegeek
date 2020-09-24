@@ -11,7 +11,7 @@
           </div>
           <a href="#">Menu</a>
         </div>
-        <a href="#">social</a>
+        <a href="#" class="social">social</a>
       </div>
       <div class="menu" :class="{ active: isActive }">
         <div class="link"><a href="">Home</a></div>

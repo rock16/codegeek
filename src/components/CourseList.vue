@@ -62,7 +62,7 @@ ul.course_list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 24px;
-  grid-auto-rows: minmax(250px, auto);
+  grid-auto-rows: minmax(200px, auto);
   margin-top: 60px;
 }
 .course_list li {
@@ -115,5 +115,10 @@ img {
 }
 .action a.btn_course {
   text-align: right;
+}
+@media (max-width: 560px) {
+  .tech_list {
+    padding: 24px;
+  }
 }
 </style>
