@@ -116,6 +116,13 @@ img {
 .action a.btn_course {
   text-align: right;
 }
+.see_all {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0px 0px 20px;
+  font-weight: 700;
+  text-align: right;
+}
 @media (max-width: 560px) {
   .tech_list {
     padding: 24px;
