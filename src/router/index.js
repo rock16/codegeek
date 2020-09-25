@@ -15,9 +15,8 @@ const routes = [
     component: lazyLoad("views", "Home"),
   },
   {
-    path: "/auth",
+    path: "/login",
     component: lazyLoad("views", "Authentication"),
-    children: [],
   },
   {
     path: "/dashboard",
@@ -34,6 +33,11 @@ const routes = [
         component: lazyLoad("components/dashboard", "CourseActivity"),
       },
     ],
+  },
+  {
+    path: "/program_details",
+    name: "ProgramDetail",
+    component: lazyLoad("views", "CourseDetail"),
   },
 ];
 

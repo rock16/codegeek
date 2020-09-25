@@ -1,23 +1,25 @@
 <template>
-  <div v-if="hasCourse">
-    <h3>My Courses</h3>
-    <h3 class="h3_detail">You are enrolled in the following programs.</h3>
-    <ul class="course_list">
-      <li v-for="(course, index) in myCourses" :key="index">
-        <a href="#">
-          <img :src="course.imgUrl" alt="course Image" class="course_img" />
-          <p>view activity</p>
-          <div class="course">
-            <h3>{{ course.title }}</h3>
-          </div>
-        </a>
-      </li>
-    </ul>
-    <p>To see more of our courses <a href="#">Click Here</a></p>
-  </div>
-  <div v-else>
-    <h1>You are not Enrolled in any of our courses</h1>
-    <a href="#">see our courses</a>
+  <div id="dashboard">
+    <div v-if="hasCourse">
+      <h3>My Courses</h3>
+      <h3 class="h3_detail">You are enrolled in the following programs.</h3>
+      <ul class="course_list">
+        <li v-for="(course, index) in myCourses" :key="index">
+          <a href="#">
+            <img :src="course.imgUrl" alt="course Image" class="course_img" />
+            <p>view activity</p>
+            <div class="course">
+              <h3>{{ course.title }}</h3>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <p>To see more of our courses <a href="#">Click Here</a></p>
+    </div>
+    <div v-else>
+      <h1>You are not Enrolled in any of our courses</h1>
+      <a href="#">see our courses</a>
+    </div>
   </div>
 </template>
 <script>
@@ -41,6 +43,9 @@ export default {
 };
 </script>
 <style scoped>
+#dashboard {
+  padding: 64px;
+}
 h3 {
   text-align: center;
 }
