@@ -1,6 +1,8 @@
 <template>
   <div id="enroll">
-    <section class="enroll_hero"></section>
+    <section class="enroll_hero">
+      <h1></h1>
+    </section>
   </div>
 </template>
 <script>

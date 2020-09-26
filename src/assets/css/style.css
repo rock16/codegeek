@@ -169,4 +169,7 @@ li {
   .social {
     display: none;
   }
+  .authBx {
+    display: none;
+  }
 }

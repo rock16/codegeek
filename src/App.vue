@@ -27,6 +27,7 @@
         <div class="link"><a href="">All Our Courses</a></div>
         <div class="link"><a href="">Blog</a></div>
         <div class="link"><a href="">Contact Us</a></div>
+        <div class="link"><a href="">Login</a></div>
       </div>
       <div class="content">
         <router-view />
