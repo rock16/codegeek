@@ -125,6 +125,7 @@
         <li>
           <div class="Bx">
             <img src="" alt="" />
+            <img src="@/assets/images/web/tictacgame.png" alt="" />
             <p>Clone</p>
           </div>
         </li>
