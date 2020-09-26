@@ -8,7 +8,9 @@
       <div class="hero_content">
         <div class="hero_header">
           <a href="#"><img src="../assets/images/biglogo.svg" alt="Logo"/></a>
-          <a href="#" class="btn">Join Us</a>
+          <div>
+            <router-link to="/login" class="btn_join">Join Us</router-link>
+          </div>
         </div>
         <div class="hero_body">
           <div class="call_to_action_content box1" style="padding-left: 0;">
@@ -31,9 +33,9 @@
                 <div>
                   <h2>About us</h2>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Adipisci eveniet delectus, consequatur sed saepe voluptates
-                    magni magnam
+                    We are a community of tech enthusiast with the goal of
+                    giving anyone, irrespective of location or finance the
+                    opportunity to become a software developer.
                   </p>
                 </div>
               </li>
@@ -79,6 +81,22 @@ export default {
 </script>
 
 <style type="text/css">
+.btn_join {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 300ms;
+  padding: 10px 16px;
+  border: 1px solid #ffffff;
+}
+.btn_join:hover {
+  font-size: 16px;
+  padding: 10px 16px;
+  color: rgb(0, 136, 207);
+  background: #fff;
+  text-transform: capitalize;
+}
 .hero {
   position: relative;
   height: 100%;

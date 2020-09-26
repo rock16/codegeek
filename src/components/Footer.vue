@@ -7,11 +7,11 @@
       <ul>
         <li><a href="#">About</a></li>
         <li><a href="#">Courses</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#">Carear</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div>Form</div>
+    <div class="form"></div>
   </div>
 </template>
 

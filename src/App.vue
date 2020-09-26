@@ -2,22 +2,31 @@
   <div id="app">
     <div class="container">
       <div class="header" :class="{ active: isActive }">
-        <a href="#"><img src="./assets/images/logosmall.svg" alt="Logo"/></a>
+        <router-link to="/"
+          ><img src="./assets/images/logosmall.svg" alt="Logo"
+        /></router-link>
         <div style="position: relative">
           <div class="ham_btn" @click="toggleActive">
             <span></span>
             <span></span>
             <span></span>
           </div>
-          <a href="#">Menu</a>
+          <a href="#" id="menu_text">Menu</a>
         </div>
-        <a href="#" class="social">social</a>
+        <router-link to="/login" class="authBx" id="login" v-if="true"
+          >Login</router-link
+        >
+        <router-link to="/dashboard" class="authBx" id="profile" v-else
+          >P</router-link
+        >
       </div>
       <div class="menu" :class="{ active: isActive }">
-        <div class="link"><a href="">Home</a></div>
-        <div class="link"><a href="">About Us</a></div>
+        <div class="link">
+          <a href="/">Go to home page</a>
+        </div>
+        <div class="link"><a href="">All Our Courses</a></div>
         <div class="link"><a href="">Blog</a></div>
-        <div class="link"><a href="">Contact</a></div>
+        <div class="link"><a href="">Contact Us</a></div>
       </div>
       <div class="content">
         <router-view />
