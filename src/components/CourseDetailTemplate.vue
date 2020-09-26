@@ -19,7 +19,7 @@
       <a href="/login">
         <div class="enroll_btn">Enroll Now</div>
       </a>
-      <p>features</p>
+      <p class="feature">features</p>
       <div>6weeks program</div>
       <div>coding challenges</div>
       <div>HTML, CSS &amp; Js</div>
@@ -218,6 +218,13 @@ h1 {
   background: #f3f3f3;
   text-align: center;
   margin: 0px 0px 13px;
+}
+.detail_action .feature {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px;
+  text-transform: uppercase;
 }
 .detail_intro {
   background: #ededed;

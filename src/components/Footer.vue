@@ -11,7 +11,10 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="form"></div>
+    <div class="socialBx">
+      <img src="@/assets/socialIcons/facebook.png" alt="facebook" class="sos" />
+      <img src="@/assets/socialIcons/twitter.png" alt="facebook" class="sos" />
+    </div>
   </div>
 </template>
 
@@ -53,5 +56,16 @@
 
 #footer_content li a:hover::after {
   width: 100%;
+}
+.socialBx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: invert(1);
+}
+.socialBx .sos {
+  width: 24px;
+  height: 24px;
+  margin-right: 24px;
 }
 </style>

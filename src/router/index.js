@@ -39,6 +39,11 @@ const routes = [
     name: "ProgramDetail",
     component: lazyLoad("views", "CourseDetail"),
   },
+  {
+    path: "/enroll",
+    name: "Enroll",
+    component: lazyLoad("views", "EnrollForm"),
+  },
 ];
 
 const router = new VueRouter({
