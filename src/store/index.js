@@ -91,18 +91,19 @@ const store = new Vuex.Store({
       }
     },
     async signUp({ dispatch, commit }, form) {
-      await fb.auth
+      const { user } = await fb.auth
         .createUserWithEmailAndPassword(form.email, form.password)
-        .then((user) => {
-          fb.userCollection
-            .doc(user.uid)
-            .set({ email: form.email, name: form.fullname, myCourse: {} });
-          dispatch("fetchUserProfile", user);
-        })
         .catch((err) => {
           commit("setLoginErr", true);
           commit("setLoginErrMsg", err.message);
         });
+      console.log("in signup before");
+      console.log(user);
+      console.log("in signup after");
+      await fb.userCollection
+        .doc(user.uid)
+        .set({ email: form.email, name: form.fullname, myCourse: {} });
+      dispatch("fetchUserProfile", user);
     },
     async fetchCourseDetail({ commit }) {
       let allCourses = {};
