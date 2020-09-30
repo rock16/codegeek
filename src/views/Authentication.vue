@@ -1,5 +1,9 @@
 <template>
   <div id="auth">
+    <div v-if="loginErr" class="errMessage">
+      <span class="closebtn" @click="togleClosebtn">&times;</span>
+      <strong>{{ loginErrMsg }}</strong>
+    </div>
     <section>
       <div class="form_container" :class="{ active: isActive }">
         <div class="user signinBx">
@@ -19,7 +23,13 @@
                 name=""
                 placeholder="Password"
               />
-              <input type="submit" name="" value="Login" @click="login" />
+              <input
+                type="submit"
+                name=""
+                value="Login"
+                @click="login"
+                :class="{ loading: loginLoading }"
+              />
               <p class="signup">
                 Don't have an account ?
                 <a href="#" @click="toggleForm">Sign Up.</a>
@@ -69,6 +79,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Authentication",
   data() {
@@ -90,15 +101,29 @@ export default {
     toggleForm() {
       this.isActive = !this.isActive;
     },
+    togleClosebtn() {
+      this.close = false;
+    },
     login() {
-      this.$store.dispatch("login", {
-        email: this.user.email,
-        password: this.user.password,
-      });
+      try {
+        this.$store.dispatch("login", {
+          email: this.user.email,
+          password: this.user.password,
+        });
+      } catch (error) {
+        this.loginErrMsg = error.message;
+      }
     },
     signUp() {
       this.$store.dispatch("signUp", this.newUser);
     },
+  },
+  computed: {
+    ...mapState({
+      loginErr: (state) => state.loginErr,
+      loginErrMsg: (state) => state.loginErrMsg,
+      loginLoading: (state) => state.loginLoading,
+    }),
   },
 };
 </script>
@@ -185,6 +210,20 @@ section .form_container .user .formBx div input[type="submit"] {
   letter-spacing: 1px;
   transition: 0.5s;
 }
+section .form_container .user .formBx div input[type="submit"].loading {
+  font-size: 0;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 15px;
+  padding: 0;
+  border: 3px solid #6773ff;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  /*border-left: 3px solid rgba(255, 255, 255, 0.3);*/
+  background-color: transparent !important;
+  animation: loading 0.8s infinite ease-in-out;
+}
 section .form_container .user .formBx div .signup {
   position: relative;
   margin-top: 20px;
@@ -230,6 +269,25 @@ section .form_container .signinBx .imgBx {
 section .form_container.active .signinBx .imgBx {
   left: -100%;
 }
+.errMessage {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
 @media (max-width: 991px) {
   section .form_container {
     max-width: 400px;
@@ -239,6 +297,14 @@ section .form_container.active .signinBx .imgBx {
   }
   section .form_container .user .formBx {
     width: 100%;
+  }
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

@@ -15,6 +15,9 @@ const store = new Vuex.Store({
     userProfile: {},
     featuredCourses: [],
     course: "",
+    loginErr: false,
+    loginErrMsg: "",
+    loginLoading: false,
   },
   mutations: {
     setFeaturedCourses(state, val) {
@@ -35,14 +38,30 @@ const store = new Vuex.Store({
     setUserCourses(state, val) {
       state.userProfile.myCourse = val;
     },
+    setLoginErr(state, val) {
+      state.loginErr = val;
+    },
+    setLoginErrMsg(state, val) {
+      state.loginErrMsg = val;
+    },
+    setLoginLoading(state, val) {
+      state.loginLoading = val;
+    },
   },
   actions: {
-    async login({ dispatch }, form) {
-      const { user } = await fb.auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-      dispatch("fetchUserProfile", user);
+    async login({ dispatch, commit }, form) {
+      commit("setLoginLoading", true);
+      //const { user } =
+      await fb.auth
+        .signInWithEmailAndPassword(form.email, form.password)
+        .then((user) => {
+          dispatch("fetchUserProfile", user);
+        })
+        .catch((err) => {
+          commit("setLoginErr", true);
+          commit("setLoginErrMsg", err.message);
+          commit("setLoginLoading", false);
+        });
     },
     async logout({ commit }) {
       // log user out
@@ -50,6 +69,7 @@ const store = new Vuex.Store({
 
       // clear user data from state
       commit("setUserProfile", {});
+      commit("setLoginErr", false);
 
       // redirect to login view
       commit("setRoute", "/dashboard");
@@ -61,22 +81,28 @@ const store = new Vuex.Store({
 
       // set user profile in state
       commit("setUserProfile", userProfile.data());
-      console.log(this.state.newRoute);
+      commit("setLoginErr", false);
+
       if (router.currentRoute.path === "/login") {
+        commit("setLoginLoading", false);
         let r = this.state.newRoute;
         //this.state.newRoute = "/";
         router.push(r);
       }
     },
-    async signUp({ dispatch }, form) {
-      const { user } = await fb.auth.createUserWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-      await fb.userCollection
-        .doc(user.uid)
-        .set({ email: form.email, name: form.fullname, myCourse: {} });
-      dispatch("fetchUserProfile", user);
+    async signUp({ dispatch, commit }, form) {
+      await fb.auth
+        .createUserWithEmailAndPassword(form.email, form.password)
+        .then((user) => {
+          fb.userCollection
+            .doc(user.uid)
+            .set({ email: form.email, name: form.fullname, myCourse: {} });
+          dispatch("fetchUserProfile", user);
+        })
+        .catch((err) => {
+          commit("setLoginErr", true);
+          commit("setLoginErrMsg", err.message);
+        });
     },
     async fetchCourseDetail({ commit }) {
       let allCourses = {};

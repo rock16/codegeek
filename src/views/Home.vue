@@ -19,15 +19,11 @@
         </div>
         <div class="hero_body">
           <div class="call_to_action_content box1" style="padding-left: 0;">
-            <h2>Tech space</h2>
             <h1>Become a software Developer</h1>
             <p>
-              Get everything you need to be a part of the driving force behind
-              Africa's technology ecosystem. <br />
-              <br />
-              Our courses are focused on emerging technology in fields like
-              Artificial Intelligence, Internet of things, Robotics and Web
-              technology.
+              With our project base learning, Get started in Website
+              Development, Android App Development, Game Development, Robotics,
+              Artificial Intelligence and more
             </p>
             <a href="#tech_courses" class="btn">See our courses</a>
           </div>
@@ -226,8 +222,7 @@ export default {
 .tech_courses {
   position: relative;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   video {
     display: none;
   }
@@ -235,6 +230,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
     height: 100%;
     width: 100%;
     background-image: url("../assets/BgImage/bg2.jpg");
@@ -245,12 +241,29 @@ export default {
     position: relative;
     display: block;
     background: rgba(0, 0, 0, 0.6);
+    padding: 62px 0px;
+  }
+  .hero_body {
+    place-items: center;
+  }
+  .vertical_line {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero_content {
+    position: relative;
+    display: block;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 0px;
   }
   .hero_header {
     display: none;
   }
   .hero_body {
     place-items: center;
+    padding: 0px 32px;
   }
   .call_to_action_content,
   .changing_content {
@@ -261,14 +274,20 @@ export default {
   .vertical_line {
     display: none;
   }
-  @media (max-width: 560px) {
-    .hero_body {
-      display: block;
-      padding: 16px;
-    }
-    .changing_content {
-      display: none;
-    }
+}
+@media (max-width: 560px) {
+  .hero_body {
+    display: block;
+    padding: 12px;
+  }
+  .changing_content {
+    display: none;
+  }
+}
+
+@media (max-width: 321px) {
+  .hero_content * {
+    margin: 4px;
   }
 }
 </style>
