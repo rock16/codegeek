@@ -342,16 +342,24 @@ h1 {
   .detail_action {
     display: none;
   }
-  .detail_build li {
-    margin: 16px 12px;
+  .detail_build ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
-  @media (max-width: 568px) {
-    div {
-      margin: 0 2px 0 0;
-    }
-    h1 {
-      text-align: center;
-    }
+  .detail_build li {
+    margin: 16px 4px;
+  }
+}
+@media (max-width: 568px) {
+  div {
+    margin: 0 2px 0 0;
+  }
+  h1 {
+    text-align: center;
+  }
+  .detail_hero {
+    padding: 18px 9px;
   }
 }
 </style>
