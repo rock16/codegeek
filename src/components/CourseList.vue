@@ -5,7 +5,7 @@
     <p>Codegeek offers courses in some of the most in demand tech skills</p>
     <ul class="course_list">
       <li v-for="(course, index) in featuredCourses" :key="index">
-        <a href="#">
+        <div @click="seeDetails($event, course.title)">
           <img :src="course.imgUrl" alt="course Image" class="course_img" />
           <div class="course">
             <h3>{{ course.title }}</h3>
@@ -14,7 +14,7 @@
               <a href="#" class="btn_course">Read more</a>
             </div>
           </div>
-        </a>
+        </div>
       </li>
     </ul>
     <a href="#" class="see_all">See All</a>
@@ -26,6 +26,11 @@ export default {
   name: "Home",
   computed: {
     ...mapState(["featuredCourses"]),
+  },
+  methods: {
+    seeDetails(event, val) {
+      this.$router.push({ name: "ProgramDetail", params: { program: val } });
+    },
   },
 };
 </script>
@@ -68,12 +73,14 @@ ul.course_list {
 .course_list li {
   max-width: 300px;
   background: linear-gradient(to bottom, #90278e 0%, #0087cf 100%);
+  cursor: pointer;
 }
 img {
   margin: 0;
   padding: 0;
 }
 .course_img {
+  max-width: 300px;
   width: 100%;
   max-height: 225px;
   border-style: none;

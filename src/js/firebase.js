@@ -20,12 +20,21 @@ firebase.initializeApp(firebaseConfig);
 
 //utils
 const db = firebase.firestore();
-db.enablePersistence();
+//db.enablePersistence();
 const auth = firebase.auth();
 const cloudStore = firebase.storage().ref();
 
 // collection reference
 const courseCollection = db.collection("courses");
+const courseCollectionDetail = db.collection("courseDetail");
+const userCollection = db.collection("users");
 
 // export utill and collections
-export { db, auth, courseCollection, cloudStore };
+export {
+  db,
+  auth,
+  courseCollection,
+  userCollection,
+  courseCollectionDetail,
+  cloudStore,
+};

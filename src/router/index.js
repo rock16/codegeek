@@ -1,11 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { auth } from "../js/firebase";
+import store from "../store/index";
 
 Vue.use(VueRouter);
 
 function lazyLoad(dir = "views", view) {
   return () => import(`@/${dir}/${view}.vue`);
+}
+function objectIsEmpty(value) {
+  return (
+    value && Object.keys(value).length === 0 && value.constructor === Object
+  );
 }
 
 const routes = [
@@ -15,11 +21,12 @@ const routes = [
     component: lazyLoad("views", "Home"),
   },
   {
-    path: "/login",
+    path: "/login/",
+    name: "Login",
     component: lazyLoad("views", "Authentication"),
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/",
     component: lazyLoad("views", "Dashboard"),
     children: [
       {
@@ -28,21 +35,26 @@ const routes = [
         component: lazyLoad("components/dashboard", "Home"),
       },
       {
-        path: "/activity",
+        path: "/activity/:id",
         name: "CourseActivity",
         component: lazyLoad("components/dashboard", "CourseActivity"),
       },
     ],
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
-    path: "/program_details",
+    path: "/program_details/:program",
     name: "ProgramDetail",
+    props: true,
     component: lazyLoad("views", "CourseDetail"),
   },
   {
-    path: "/enroll",
-    name: "Enroll",
+    path: "/enrol",
+    name: "Enrol",
     component: lazyLoad("views", "EnrollForm"),
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -54,9 +66,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+  const requireCourse = to.name === "ProgramDetail";
   if (requiresAuth && !auth.currentUser) {
-    next("/auth");
+    next("/login");
   } else {
+    console.log(to.path);
+    if (requireCourse && objectIsEmpty(store.state.allCourseDetails)) {
+      store.dispatch("fetchCourseDetail");
+      console.log("in requireCourse router");
+    }
     next();
   }
 });

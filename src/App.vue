@@ -13,11 +13,15 @@
           </div>
           <a href="#" id="menu_text">Menu</a>
         </div>
-        <router-link to="/login" class="authBx" id="login" v-if="true"
-          >Login</router-link
+        <router-link
+          to="/dashboard"
+          class="authBx"
+          id="profile"
+          v-if="isAuthenticated"
+          >{{ userAvatar }}</router-link
         >
-        <router-link to="/dashboard" class="authBx" id="profile" v-else
-          >P</router-link
+        <router-link to="/login" class="authBx" id="login" v-else
+          >Login</router-link
         >
       </div>
       <div class="menu" :class="{ active: isActive }">
@@ -27,7 +31,10 @@
         <div class="link"><a href="">All Our Courses</a></div>
         <div class="link"><a href="">Blog</a></div>
         <div class="link"><a href="">Contact Us</a></div>
-        <div class="link"><a href="">Login</a></div>
+        <div class="link" v-if="isAuthenticated">
+          <a @click="logout">Log Out</a>
+        </div>
+        <div class="link" v-else><a href="/login">Login</a></div>
       </div>
       <div class="content">
         <router-view />
@@ -39,6 +46,7 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
+import { mapState } from "vuex";
 export default {
   name: "App",
   components: {
@@ -52,6 +60,21 @@ export default {
   methods: {
     toggleActive() {
       this.isActive = !this.isActive;
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+    },
+  },
+  computed: {
+    ...mapState({
+      userProfile: (state) => state.userProfile,
+    }),
+    isAuthenticated() {
+      return Object.keys(this.userProfile).length > 1;
+    },
+    userAvatar() {
+      return this.userProfile.name[0];
     },
   },
 };

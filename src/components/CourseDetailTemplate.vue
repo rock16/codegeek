@@ -1,84 +1,51 @@
 <template>
-  <div class="course_detail_template">
+  <div v-if="false">
+    <h1>
+      This program would be ready as soon as we are done curating it content.
+      checkout Frontend web developer bootcamp
+    </h1>
+  </div>
+  <div v-else-if="detail" class="course_detail_template">
     <section class="detail_hero">
-      <h1>Frontend Web Developer Bootcamp:</h1>
+      <h1>{{ detail.detailHero.h }}:</h1>
       <p>
-        Learn to create amazing world class web apps with HTML, CSS and
-        JavaScript
+        {{ detail.detailHero.p }}
       </p>
       <p id="location">
         At Dess't Computer Training center, Beside Transformer, Y-Junction,
         Zaki-Biam
       </p>
-      <a href="/" class="action_btn"
-        ><div class="itm1">Enroll Now</div>
-        <div class="itm2">Starts Oct 7th</div></a
+      <a v-if="showbtnAction" class="action_btn"
+        ><div class="itm1" @click="enrol">Enroll Now</div>
+        <div class="itm2">Starts Oct 8th</div></a
       >
+      <a v-else class="action_btn"> <div class="itm2">Starts Oct 8th</div></a>
     </section>
     <section class="detail_action">
-      <a href="/login">
-        <div class="enroll_btn">Enroll Now</div>
-      </a>
+      <div v-if="showbtnAction">
+        <div class="enroll_btn" @click.stop="enrol">Enroll Now</div>
+      </div>
+      <div v-else>
+        <div class="enroll_btn" @click="goToDashboard">Go to dashboard</div>
+      </div>
       <p class="feature">features</p>
-      <div>6weeks program</div>
-      <div>coding challenges</div>
-      <div>HTML, CSS &amp; Js</div>
-      <div>Study Group</div>
-      <div>mentor support</div>
-      <div>Feedback</div>
-      <div></div>
+      <div v-for="(item, index) in detail.detailAction" :key="index">
+        {{ item }}
+      </div>
     </section>
     <section class="detail_intro">
       <h1>Program Detail</h1>
       <p>
-        The program contains 10 modules and covers how to write HTML5 and CSS3,
-        and how to create interactive web experiences with JavaScript that
-        displays correctly on mobile, tablet, and large screen browsers. During
-        this bootcamp you will develop series of professional-quality websites
-        accessible to a wide audience, including those with visual, audial,
-        physical, and cognitive impairments.
+        {{ detail.detailIntro.p }}
       </p>
       <div class="moduleBx">
         <ul>
-          <li>
-            <div>Module 1</div>
-            <div>How the internet works and dev setup</div>
-          </li>
-          <li>
-            <div>Module 2</div>
-            <div>HTML and CSS Basics</div>
-          </li>
-          <li>
-            <div>Module 3</div>
-            <div>Responsive Website</div>
-          </li>
-          <li>
-            <div>Module 4</div>
-            <div>Css Flexbox and Grid</div>
-          </li>
-          <li>
-            <div>Module 5</div>
-            <div>Fundamentals of JavaScript</div>
-          </li>
-          <li>
-            <div>Module 6</div>
-            <div>Javascript and DOM</div>
-          </li>
-          <li>
-            <div>Module 7</div>
-            <div>Working with Apis</div>
-          </li>
-          <li>
-            <div>Module 8</div>
-            <div>"Introduction to version control with Git"</div>
-          </li>
-          <li>
-            <div>Module 9</div>
-            <div>Frameworks and Libraries</div>
-          </li>
-          <li>
-            <div>Module 10</div>
-            <div>What next?</div>
+          <li
+            v-for="(module, index) in detail.detailIntro.moduleBx"
+            :key="index"
+          >
+            <div>Module {{ index }}</div>
+            <div>{{ module }}</div>
           </li>
         </ul>
       </div>
@@ -86,12 +53,9 @@
     <section class="detail_learn">
       <h1>What you will learn</h1>
       <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>APIs</li>
-        <li>Responsive Design</li>
-        <li>Git</li>
+        <li v-for="(item, index) in detail.detailLearn" :key="index">
+          {{ item }}
+        </li>
       </ul>
     </section>
     <section class="detail_build">
@@ -134,16 +98,64 @@
     <section class="detail_requirements">
       <h1>Prerequisite</h1>
       <p>What you need to have before this program</p>
-      <div>No programming experiences required</div>
-      <div>The willingness to succeed</div>
-      <div>A PC or Mac computer (optional)</div>
+      <div v-for="(item, index) in detail.detailRequirement" :key="index">
+        {{ item }}
+      </div>
     </section>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "CourseDetailTemplate",
-  props: ["imgUrl"],
+  props: {
+    course: {
+      type: String,
+      default: () => ({ type: "" }),
+    },
+  },
+  data() {
+    return {
+      ready: true,
+    };
+  },
+  methods: {
+    goToDashboard() {
+      this.$router.push("/dashboard");
+    },
+    enrol() {
+      console.log("in courseDetailTemplate");
+      this.$store.commit("setRoute", "/enrol");
+      this.$store.commit("setCourse", this.course);
+      this.$router.push("/enrol");
+    },
+    objectIsEmpty(value) {
+      return (
+        value && Object.keys(value).length === 0 && value.constructor === Object
+      );
+    },
+  },
+  computed: {
+    ...mapState({
+      detail: function(state) {
+        return state.allCourseDetails[this.course];
+      },
+      userProfile: (state) => state.userProfile,
+      isEnrolled: function() {
+        return this.userProfile.myCourse[this.course] ? true : false;
+      },
+    }),
+    isAuthenticated() {
+      return Object.keys(this.userProfile).length > 0;
+    },
+    showbtnAction() {
+      if (this.isAuthenticated) {
+        return !this.isEnrolled;
+      } else {
+        return true;
+      }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -216,9 +228,11 @@ h1 {
 }
 .detail_action .enroll_btn {
   padding: 10px 16px;
-  background: #f3f3f3;
+  background: #ffcc2d;
   text-align: center;
+  color: #000;
   margin: 0px 0px 13px;
+  cursor: pointer;
 }
 .detail_action .feature {
   font-size: 16px;
@@ -310,5 +324,34 @@ h1 {
 .detail_build .Bx img {
   max-width: 300px;
   max-height: 250px;
+}
+@media (max-width: 768px) {
+  section {
+    padding: 24px 5px;
+    margin: 0px 0px;
+  }
+
+  .detail_intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .detail_intro p {
+    width: 100%;
+  }
+  .detail_action {
+    display: none;
+  }
+  .detail_build li {
+    margin: 16px 12px;
+  }
+  @media (max-width: 568px) {
+    div {
+      margin: 0 2px 0 0;
+    }
+    h1 {
+      text-align: center;
+    }
+  }
 }
 </style>

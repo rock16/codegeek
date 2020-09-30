@@ -9,7 +9,12 @@
         <div class="hero_header">
           <a href="#"><img src="../assets/images/biglogo.svg" alt="Logo"/></a>
           <div>
-            <router-link to="/login" class="btn_join">Join Us</router-link>
+            <div class="btn_join" v-if="isAuthenticated" @click="logout">
+              Log out
+            </div>
+            <router-link to="/login" class="btn_join" v-else
+              >Join now</router-link
+            >
           </div>
         </div>
         <div class="hero_body">
@@ -60,6 +65,7 @@
 <script>
 // @ is an alias to /src
 import CourseList from "@/components/CourseList.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
@@ -72,30 +78,45 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/codegeekxyz.appspot.com/o/videos%2FvideoBg4.mp4?alt=media&token=dc937cdc-7be0-4804-89f6-4a159d6e51aa",
     };
   },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
 
   mounted() {
     console.log("dispatch");
-    //this.$store.dispatch("fetchFeaturedCourses");
+    this.$store.dispatch("fetchFeaturedCourses");
+  },
+  computed: {
+    ...mapState({
+      userProfile: (state) => state.userProfile,
+    }),
+    isAuthenticated() {
+      return Object.keys(this.userProfile).length > 0;
+    },
   },
 };
 </script>
 
 <style type="text/css">
 .btn_join {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 300ms;
-  padding: 10px 16px;
-  border: 1px solid #ffffff;
-}
-.btn_join:hover {
-  font-size: 16px;
   padding: 10px 16px;
   color: rgb(0, 136, 207);
   background: #fff;
-  text-transform: capitalize;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 300ms;
+  cursor: pointer;
+}
+.btn_join:hover {
+  padding: 10px 16px;
+  border: 1px solid #ffffff;
+  color: #bfbfbf;
+  background: transparent;
 }
 .hero {
   position: relative;
@@ -146,10 +167,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-self: center;
-}
-.hero_header a {
-  text-decoration: none;
-  color: #ffffffaa;
 }
 
 .btn {

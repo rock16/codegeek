@@ -8,6 +8,7 @@ html {
   scroll-behavior: smooth;
 }
 a {
+  cursor: pointer;
   text-decoration: none;
 }
 li {
@@ -81,7 +82,7 @@ li {
 .menu {
   position: fixed;
   top: 50%;
-  left: 0;
+  left: -10px;
   width: 0%;
   height: 0%;
   background: blue;
@@ -136,6 +137,9 @@ li {
   font-size: large;
 }
 #login {
+  background: rgb(0, 136, 207);
+  color: #fff;
+  padding: 8px 13px;
 }
 .home {
   position: relative;

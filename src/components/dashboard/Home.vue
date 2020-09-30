@@ -5,13 +5,15 @@
       <h3 class="h3_detail">You are enrolled in the following programs.</h3>
       <ul class="course_list">
         <li v-for="(course, index) in myCourses" :key="index">
-          <a href="#">
+          <router-link
+            :to="{ name: 'CourseActivity', params: { id: course.title } }"
+          >
             <img :src="course.imgUrl" alt="course Image" class="course_img" />
             <p>view activity</p>
             <div class="course">
               <h3>{{ course.title }}</h3>
             </div>
-          </a>
+          </router-link>
         </li>
       </ul>
       <p>To see more of our courses <a href="#">Click Here</a></p>
@@ -23,22 +25,41 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "dashboardHome",
   data() {
     return {
       hasCourse: true,
-      myCourses: [
-        {
+      Courses: {
+        first: {
           title: "Frontend Web Development Bootcamp",
           imgUrl: require("@/assets/images/courses/frontend.jpg"),
         },
-        {
+        second: {
           title: "Introduction to programming in Python",
           imgUrl: require("@/assets/images/courses/python.jpg"),
         },
-      ],
+      },
     };
+  },
+  methods: {
+    goToActivity(val) {
+      //this.$router.push("/activity");
+      this.$router.push({
+        name: "/activity",
+        params: { program: val },
+      });
+    },
+  },
+  computed: {
+    ...mapState({
+      userProfile: (state) => state.userProfile,
+      myCourses: (state) => state.userProfile.myCourse,
+    }),
+  },
+  mounted() {
+    console.log(this.userProfile.myCourse);
   },
 };
 </script>
@@ -84,6 +105,7 @@ li::after {
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none;
   background: linear-gradient(
     to bottom,
     #90278e 0%,

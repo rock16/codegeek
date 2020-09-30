@@ -5,32 +5,62 @@
         <div class="user signinBx">
           <div class="imgBx Bx1"></div>
           <div class="formBx">
-            <form>
+            <div>
               <h2>Sign In</h2>
-              <input type="text" name="" placeholder="username" />
-              <input type="password" name="" placeholder="Password" />
-              <input type="submit" name="" value="Login" />
+              <input
+                v-model="user.email"
+                type="email"
+                name=""
+                placeholder="email"
+              />
+              <input
+                v-model="user.password"
+                type="password"
+                name=""
+                placeholder="Password"
+              />
+              <input type="submit" name="" value="Login" @click="login" />
               <p class="signup">
                 Don't have an account ?
                 <a href="#" @click="toggleForm">Sign Up.</a>
               </p>
-            </form>
+            </div>
           </div>
         </div>
         <div class="user signupBx">
           <div class="formBx">
-            <form>
+            <div>
               <h2>Create an Account</h2>
-              <input type="text" name="" placeholder="username" />
-              <input type="email" name="" placeholder="Email" />
-              <input type="password" name="" placeholder="Create Password" />
-              <input type="password" name="" placeholder="Confirm Password" />
-              <input type="submit" name="" value="Sign Up" />
+              <input
+                v-model="newUser.fullname"
+                type="text"
+                name=""
+                placeholder="Fullname"
+              />
+              <input
+                v-model="newUser.email"
+                type="email"
+                name=""
+                placeholder="Email"
+              />
+              <input
+                v-model="newUser.password"
+                type="password"
+                name=""
+                placeholder="Create Password"
+              />
+              <input
+                v-model="newUser.confirmPassword"
+                type="password"
+                name=""
+                placeholder="Confirm Password"
+              />
+              <input @click="signUp" type="submit" name="" value="Sign Up" />
               <p class="signup">
                 Already have an account ?
                 <a href="#" @click="toggleForm">Sign In.</a>
               </p>
-            </form>
+            </div>
           </div>
           <div class="imgBx Bx2"></div>
         </div>
@@ -44,11 +74,30 @@ export default {
   data() {
     return {
       isActive: false,
+      user: {
+        email: "",
+        password: "",
+      },
+      newUser: {
+        fullname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      },
     };
   },
   methods: {
     toggleForm() {
       this.isActive = !this.isActive;
+    },
+    login() {
+      this.$store.dispatch("login", {
+        email: this.user.email,
+        password: this.user.password,
+      });
+    },
+    signUp() {
+      this.$store.dispatch("signUp", this.newUser);
     },
   },
 };
@@ -102,7 +151,7 @@ section .form_container .user .formBx {
   padding: 40px;
   transition: 0.5s;
 }
-section .form_container .user .formBx form h2 {
+section .form_container .user .formBx div h2 {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -112,7 +161,7 @@ section .form_container .user .formBx form h2 {
   margin-bottom: 10px;
   color: #555;
 }
-section .form_container .user .formBx form input {
+section .form_container .user .formBx div input {
   position: relative;
   width: 100%;
   padding: 10px;
@@ -126,7 +175,7 @@ section .form_container .user .formBx form input {
   letter-spacing: 1px;
   font-weight: 300;
 }
-section .form_container .user .formBx form input[type="submit"] {
+section .form_container .user .formBx div input[type="submit"] {
   max-width: 100px;
   background: #6773ff;
   color: #fff;
@@ -136,7 +185,7 @@ section .form_container .user .formBx form input[type="submit"] {
   letter-spacing: 1px;
   transition: 0.5s;
 }
-section .form_container .user .formBx form .signup {
+section .form_container .user .formBx div .signup {
   position: relative;
   margin-top: 20px;
   font-size: 12px;
@@ -145,7 +194,7 @@ section .form_container .user .formBx form .signup {
   text-transform: uppercase;
   font-weight: 300;
 }
-section .form_container .user .formBx form .signup a {
+section .form_container .user .formBx div .signup a {
   font-weight: 600;
   text-decoration: none;
   color: #677eff;
