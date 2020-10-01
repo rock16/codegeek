@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container">
-      <div class="header" :class="{ active: isActive }">
-        <router-link to="/"
+      <div class="header" :class="{ active: isActiveMenu }">
+        <router-link to="/" @click="closeMenu"
           ><img src="./assets/images/logosmall.svg" alt="Logo"
         /></router-link>
         <div style="position: relative">
@@ -24,17 +24,17 @@
           >Login</router-link
         >
       </div>
-      <div class="menu" :class="{ active: isActive }">
+      <div class="menu" :class="{ active: isActiveMenu }">
         <div class="link">
           <a href="/">Go to home page</a>
         </div>
-        <div class="link"><a href="">All Our Courses</a></div>
+        <div class="link"><a href="">All Our Bootcamp</a></div>
         <div class="link"><a href="">Blog</a></div>
         <div class="link"><a href="">Contact Us</a></div>
         <div class="link" v-if="isAuthenticated">
           <a @click="logout">Log Out</a>
         </div>
-        <div class="link" v-else><a href="/login">Login</a></div>
+        <div class="link" v-else><a href="/login">Login or Register</a></div>
       </div>
       <div class="content">
         <router-view />
@@ -65,6 +65,9 @@ export default {
       this.$store.dispatch("logout");
       this.$router.push("/");
     },
+    closeMenu() {
+      this.isActiveMenu = false;
+    },
   },
   computed: {
     ...mapState({
@@ -75,6 +78,9 @@ export default {
     },
     userAvatar() {
       return this.userProfile.name[0];
+    },
+    isActiveMenu() {
+      return this.isActive;
     },
   },
 };

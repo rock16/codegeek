@@ -74,6 +74,9 @@ ul.course_list {
   max-width: 300px;
   background: linear-gradient(to bottom, #90278e 0%, #0087cf 100%);
   cursor: pointer;
+  -webkit-box-shadow: 4px 6px 39px -8px rgba(0, 135, 207, 0.1);
+  -moz-box-shadow: 4px 6px 39px -8px rgba(0, 135, 207, 0.1);
+  box-shadow: 4px 6px 39px -8px rgba(0, 135, 207, 0.1);
 }
 img {
   margin: 0;

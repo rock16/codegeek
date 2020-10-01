@@ -42,6 +42,7 @@ li {
   width: calc(100% - 80px);
   top: 0;
   right: 0;
+  background: #f3f3f3;
 }
 .header .ham_btn {
   width: 50px;

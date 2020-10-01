@@ -132,4 +132,20 @@ h3 {
   text-align: center;
   color: rgb(0, 136, 207);
 }
+@media (max-width: 768px) {
+  .success {
+    font-size: 30px;
+  }
+  .info {
+    text-align: center;
+  }
+  .enroll_hero {
+    padding: 20px 16px;
+  }
+  .failure {
+    color: crimson;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+}
 </style>

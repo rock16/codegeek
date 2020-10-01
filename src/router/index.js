@@ -27,21 +27,10 @@ const routes = [
   },
   {
     path: "/dashboard/",
+    name: "Dashboard",
     component: lazyLoad("views", "Dashboard"),
-    children: [
-      {
-        path: "",
-        name: "DashboardHome",
-        component: lazyLoad("components/dashboard", "Home"),
-      },
-      {
-        path: "/activity/:id",
-        name: "CourseActivity",
-        component: lazyLoad("components/dashboard", "CourseActivity"),
-      },
-    ],
     meta: {
-      requiresAuth: true,
+      //requiresAuth: true,
     },
   },
   {
