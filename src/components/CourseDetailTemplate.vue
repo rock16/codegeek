@@ -17,9 +17,11 @@
       </p>
       <a v-if="showbtnAction" class="action_btn"
         ><div class="itm1" @click="enrol">Enroll Now</div>
-        <div class="itm2">Starts Oct 8th</div></a
+        <div class="itm2">{{ detail.detailHero.date }}</div></a
       >
-      <a v-else class="action_btn"> <div class="itm2">Starts Oct 8th</div></a>
+      <a v-else class="action_btn">
+        <div class="itm2">{{ detail.detailHero.date }}</div></a
+      >
     </section>
     <section class="detail_action">
       <div v-if="showbtnAction">
@@ -60,7 +62,7 @@
     </section>
     <section class="detail_build">
       <h1>What you will build</h1>
-      <p>This program includes five concrete projects</p>
+      <p>{{ detail.detailBuild.p }}</p>
       <ul>
         <li>
           <div class="Bx">

@@ -8,7 +8,7 @@
           v-for="(bootcamp, index) in featuredBootcamp"
           :key="index"
         >
-          <div class="div_swipper">
+          <div class="div_swipper" @click="seeDetails($event, bootcamp.title)">
             <img :src="bootcamp.imgUrl" alt="" />
             <div class="bootcamp">
               <h3>{{ bootcamp.title }}</h3>
@@ -50,7 +50,7 @@
             size="4x"
             id="font_facebook"
           />
-          <h3>Facebook</h3>
+          <a href="https://www.facebook.com"><h3>Facebook</h3></a>
         </div>
       </div>
     </section>
@@ -105,6 +105,11 @@ export default {
         Object.keys(this.featuredBootcamp).length === 0 &&
         this.featuredBootcamp.constructor === Object
       );
+    },
+  },
+  methods: {
+    seeDetails(event, val) {
+      this.$router.push({ name: "ProgramDetail", params: { program: val } });
     },
   },
   mounted() {

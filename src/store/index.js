@@ -18,6 +18,7 @@ const store = new Vuex.Store({
     loginErr: false,
     loginErrMsg: "",
     loginLoading: false,
+    signUpLoading: false,
   },
   mutations: {
     setFeaturedCourses(state, val) {
@@ -47,6 +48,9 @@ const store = new Vuex.Store({
     setLoginLoading(state, val) {
       state.loginLoading = val;
     },
+    setSignUpLoading(state, val) {
+      state.signUpLoading = val;
+    },
   },
   actions: {
     async login({ dispatch, commit }, form) {
@@ -56,6 +60,7 @@ const store = new Vuex.Store({
         .signInWithEmailAndPassword(form.email, form.password)
         .then((user) => {
           dispatch("fetchUserProfile", user);
+          commit("setLoginLoading", false);
         })
         .catch((err) => {
           commit("setLoginErr", true);
@@ -84,26 +89,26 @@ const store = new Vuex.Store({
       commit("setLoginErr", false);
 
       if (router.currentRoute.path === "/login") {
-        commit("setLoginLoading", false);
         let r = this.state.newRoute;
         //this.state.newRoute = "/";
         router.push(r);
       }
     },
     async signUp({ dispatch, commit }, form) {
+      commit("setSignUpLoading", true);
       const { user } = await fb.auth
         .createUserWithEmailAndPassword(form.email, form.password)
         .catch((err) => {
           commit("setLoginErr", true);
           commit("setLoginErrMsg", err.message);
+          commit("setSignUpLoading", false);
         });
-      console.log("in signup before");
-      console.log(user);
-      console.log("in signup after");
+
       await fb.userCollection
         .doc(user.uid)
         .set({ email: form.email, name: form.fullname, myCourse: {} });
       dispatch("fetchUserProfile", user);
+      commit("setSignUpLoading", false);
     },
     async fetchCourseDetail({ commit }) {
       let allCourses = {};

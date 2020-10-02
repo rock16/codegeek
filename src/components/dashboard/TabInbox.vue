@@ -45,7 +45,7 @@ export default {
   flex-wrap: wrap;
 }
 #inbox #noMessage h4 {
-  color: rgb(187, 63, 54);
+  color: #0087cf;
 }
 @media (max-width: 577px) {
   #inbox {

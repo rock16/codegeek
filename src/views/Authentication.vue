@@ -46,26 +46,36 @@
                 type="text"
                 name=""
                 placeholder="Fullname"
+                required
               />
               <input
                 v-model="newUser.email"
                 type="email"
                 name=""
                 placeholder="Email"
+                required
               />
               <input
                 v-model="newUser.password"
                 type="password"
                 name=""
                 placeholder="Create Password"
+                required
               />
               <input
                 v-model="newUser.confirmPassword"
                 type="password"
                 name=""
                 placeholder="Confirm Password"
+                required
               />
-              <input @click="signUp" type="submit" name="" value="Sign Up" />
+              <input
+                @click="signUp"
+                type="submit"
+                name=""
+                value="Sign Up"
+                :class="{ loading: signUpLoading }"
+              />
               <p class="signup">
                 Already have an account ?
                 <a href="#" @click="toggleForm">Sign In.</a>
@@ -115,7 +125,14 @@ export default {
       }
     },
     signUp() {
-      this.$store.dispatch("signUp", this.newUser);
+      try {
+        if (this.newUser.password !== this.newUser.confirmPassword) {
+          throw new Error("Both password do not match");
+        }
+        this.$store.dispatch("signUp", this.newUser);
+      } catch (error) {
+        this.loginErrMsg = error.message;
+      }
     },
   },
   computed: {
@@ -123,6 +140,7 @@ export default {
       loginErr: (state) => state.loginErr,
       loginErrMsg: (state) => state.loginErrMsg,
       loginLoading: (state) => state.loginLoading,
+      signUpLoading: (state) => state.signUpLoading,
     }),
   },
 };

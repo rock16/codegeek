@@ -22,7 +22,7 @@
 #footer_content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  background: linear-gradient(to bottom, #5a2963, #061e40);
+  background: linear-gradient(to right, #022e62, #004693);
   padding: 64px 90px;
   width: 100%;
   height: 100%;

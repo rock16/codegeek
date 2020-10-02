@@ -1,21 +1,21 @@
 <template>
   <div class="my_bootcamp">
     <section v-if="isEnrolled">
-      <div class="a_bootcamp" v-for="(item, index) in items" :key="index">
+      <div class="a_bootcamp" v-for="(item, index) in myCourses" :key="index">
         <div class="title">Bootcamp</div>
         <hr style="margin: 20px 0px 8px;" />
         <div class="group">
-          <h3 class="name">Bootcamp name</h3>
+          <h3 class="name">{{ item.title }}</h3>
           <div class="action_btn">Go to Bootcamp activity</div>
-          <p>Get 10% percent of each time you refer a friend</p>
+          <p>Get 10% percent off each time you refer a friend</p>
         </div>
         <div class="information">
-          <div><span class="note">Price:</span><span>N6000</span></div>
-          <div><span class="note">Duration</span><span>6weeks</span></div>
+          <div><span class="note">Price: </span><span>N6000</span></div>
+          <div><span class="note">Duration: </span><span>6weeks</span></div>
         </div>
       </div>
     </section>
-    <section>
+    <section v-else>
       <div class="a_bootcamp">
         <h4>
           You are not enrolled in any bootcamp at the moment. Click the Home tab
@@ -27,12 +27,26 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       items: [1, 2, 3],
-      isEnrolled: false,
     };
+  },
+  methods: {
+    isEmpty(obj) {
+      return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+    },
+  },
+  computed: {
+    ...mapState({
+      userProfile: (state) => state.userProfile,
+      myCourses: (state) => state.userProfile.myCourse,
+    }),
+    isEnrolled() {
+      return !this.isEmpty(this.myCourses);
+    },
   },
 };
 </script>
@@ -88,7 +102,7 @@ export default {
   font-weight: 700;
 }
 .my_bootcamp .a_bootcamp .information div .note {
-  color: yellow;
+  color: #ffcc2d;
   font-size: 20px;
 }
 .my_bootcamp .a_bootcamp h4 {

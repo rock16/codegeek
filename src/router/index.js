@@ -30,7 +30,7 @@ const routes = [
     name: "Dashboard",
     component: lazyLoad("views", "Dashboard"),
     meta: {
-      //requiresAuth: true,
+      requiresAuth: true,
     },
   },
   {
