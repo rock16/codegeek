@@ -31,6 +31,7 @@
         <div class="link"><a href="">All Our Bootcamp</a></div>
         <div class="link"><a href="">Blog</a></div>
         <div class="link"><a href="">Contact Us</a></div>
+        <div class="link"><a href="/dashboard">Dashboard</a></div>
         <div class="link" v-if="isAuthenticated">
           <a @click="logout">Log Out</a>
         </div>
@@ -64,6 +65,9 @@ export default {
     logout() {
       this.$store.dispatch("logout");
       this.$router.push("/");
+    },
+    goToDashboard() {
+      this.$router.push("/dashboard");
     },
     closeMenu() {
       this.isActiveMenu = false;

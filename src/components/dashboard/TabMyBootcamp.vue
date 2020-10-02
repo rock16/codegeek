@@ -6,12 +6,27 @@
         <hr style="margin: 20px 0px 8px;" />
         <div class="group">
           <h3 class="name">{{ item.title }}</h3>
-          <div class="action_btn">Go to Bootcamp activity</div>
+          <div
+            @click="goToResource($event, item.title)"
+            class="action_btn"
+            id="blue"
+            v-if="item.paid"
+          >
+            Go to Bootcamp resources
+          </div>
+          <div class="action_btn" id="red" v-else>
+            Visit Dess't Computer to pay and start accessing resource for this
+            bootcamp
+          </div>
           <p>Get 10% percent off each time you refer a friend</p>
         </div>
         <div class="information">
-          <div><span class="note">Price: </span><span>N6000</span></div>
-          <div><span class="note">Duration: </span><span>6weeks</span></div>
+          <div>
+            <span class="note">Price: </span><span>{{ item.price }}</span>
+          </div>
+          <div>
+            <span class="note">Duration: </span><span>{{ item.duration }}</span>
+          </div>
         </div>
       </div>
     </section>
@@ -37,6 +52,9 @@ export default {
   methods: {
     isEmpty(obj) {
       return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+    },
+    goToResource(evnt, title) {
+      this.$router.push({ name: "Resource", params: { resource: title } });
     },
   },
   computed: {
@@ -72,7 +90,6 @@ export default {
   text-align: start;
 }
 .my_bootcamp .a_bootcamp .group .action_btn {
-  background: rgb(0, 135, 207);
   font-size: 13px;
   line-height: 16px;
   vertical-align: center;
@@ -83,6 +100,12 @@ export default {
   width: 50%;
   margin-left: 25%;
   cursor: pointer;
+}
+.my_bootcamp .a_bootcamp .group .action_btn#red {
+  background: red;
+}
+.my_bootcamp .a_bootcamp .group .action_btn#blue {
+  background: rgb(0, 135, 207);
 }
 .my_bootcamp .a_bootcamp .group p {
   color: #2e3d49;

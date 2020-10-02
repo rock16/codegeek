@@ -37,7 +37,7 @@
 <script>
 import { mapState } from "vuex";
 import * as fb from "../js/firebase";
-import img from "../js/courseImg";
+import bootcamp from "../js/courseImg";
 export default {
   name: "enrollForm",
   data() {
@@ -58,7 +58,7 @@ export default {
         if (user.data().myCourse[this.findCourse]) {
           throw new Error("You were previously enrolled in this course");
         }
-        await this.$store.dispatch("enrol", img[this.findCourse]);
+        await this.$store.dispatch("enrol", this.courseData);
         this.success = true;
         this.err = false;
       } catch (error) {
@@ -76,6 +76,9 @@ export default {
         return this.userProfile.myCourse[state.course] ? true : false;
       },
     }),
+    courseData() {
+      return bootcamp[this.findCourse];
+    },
     enrolledNow() {
       return this.enrolled;
     },

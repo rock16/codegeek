@@ -21,6 +21,15 @@ const routes = [
     component: lazyLoad("views", "Home"),
   },
   {
+    path: "resources/:resource",
+    name: "Resource",
+    component: lazyLoad("views", "Resources"),
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/login/",
     name: "Login",
     component: lazyLoad("views", "Authentication"),

@@ -138,7 +138,7 @@ const store = new Vuex.Store({
           console.log(error);
         });
     },
-    async enrol({ commit }, img) {
+    async enrol({ commit }, courseData) {
       const userId = fb.auth.currentUser.uid;
       //const docId = `${userId}_${course.id}`
 
@@ -148,7 +148,9 @@ const store = new Vuex.Store({
       let myCourse = this.state.userProfile.myCourse;
       myCourse[this.state.course] = {
         title: this.state.course,
-        imgUrl: img,
+        paid: false,
+        price: courseData.price,
+        duration: courseData.duration,
       };
       console.log("in store enroll");
       await fb.userCollection

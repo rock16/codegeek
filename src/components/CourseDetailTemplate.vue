@@ -17,10 +17,10 @@
       </p>
       <a v-if="showbtnAction" class="action_btn"
         ><div class="itm1" @click="enrol">Enroll Now</div>
-        <div class="itm2">{{ detail.detailHero.date }}</div></a
+        <div class="itm2">Starts {{ detail.detailHero.date }}</div></a
       >
       <a v-else class="action_btn">
-        <div class="itm2">{{ detail.detailHero.date }}</div></a
+        <div class="itm2">Starts {{ detail.detailHero.date }}</div></a
       >
     </section>
     <section class="detail_action">
@@ -64,35 +64,10 @@
       <h1>What you will build</h1>
       <p>{{ detail.detailBuild.p }}</p>
       <ul>
-        <li>
-          <div class="Bx">
-            <img src="@/assets/images/web/portfolio.jpg" alt="" />
-            <p>Portfolio</p>
-          </div>
-        </li>
-        <li>
+        <li v-for="(project, index) in detail.detailBuild.list" :key="index">
           <div class="Bx">
             <img src="@/assets/images/web/calculator.png" alt="" />
-            <p>Calulator</p>
-          </div>
-        </li>
-        <li>
-          <div class="Bx">
-            <img src="@/assets/images/web/todolist.png" alt="" />
-            <p>To do list</p>
-          </div>
-        </li>
-        <li>
-          <div class="Bx">
-            <img src="@/assets/images/web/tictacgame.png" alt="" />
-            <p>Tic Tac Toe game</p>
-          </div>
-        </li>
-        <li>
-          <div class="Bx">
-            <img src="" alt="" />
-            <img src="@/assets/images/web/tictacgame.png" alt="" />
-            <p>Clone</p>
+            <p>{{ project.name }}</p>
           </div>
         </li>
       </ul>

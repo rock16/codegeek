@@ -166,7 +166,7 @@ export default {
 }
 
 .btn {
-  padding: 17px 54px;
+  padding: 16px 42px;
   background: rgb(0, 136, 207);
   text-decoration: none;
   color: #ffffff;
@@ -275,7 +275,7 @@ export default {
     display: none;
   }
 }
-@media (max-width: 560px) {
+@media (max-width: 577px) {
   .hero_body {
     display: block;
     padding: 12px;
@@ -285,9 +285,12 @@ export default {
   }
 }
 
-@media (max-width: 321px) {
+@media (max-width: 320px) {
   .hero_content * {
     margin: 4px;
+  }
+  .btn {
+    padding: 10px 20px;
   }
 }
 </style>

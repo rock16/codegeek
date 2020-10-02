@@ -109,13 +109,13 @@ img {
 .action {
   display: flex;
   justify-content: space-around;
-  padding: 24px 0px;
+  padding: 16px 0px;
 }
 .action a {
   color: #ffffff;
   font-size: 13px;
   font-weight: 700;
-  padding: 12px;
+  padding: 6px;
   line-height: 18px;
   text-transform: uppercase;
 }
