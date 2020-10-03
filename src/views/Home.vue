@@ -13,7 +13,7 @@
               Log out
             </div>
             <router-link to="/login" class="btn_join" v-else
-              >Join now</router-link
+              >Join for free</router-link
             >
           </div>
         </div>
@@ -25,7 +25,12 @@
               Development, Android App Development, Game Development, Robotics,
               Artificial Intelligence and more
             </p>
-            <a href="#tech_courses" class="btn">See our courses</a>
+            <a href="#tech_courses" class="btn" id="see_course_btn"
+              >See our courses</a
+            >
+            <a href="#tech_courses" class="btn" id="register_btn"
+              >Register for Free</a
+            >
           </div>
           <div class="vertical_line"></div>
           <div class="changing_content box2">
@@ -202,6 +207,9 @@ export default {
   font-weight: 600;
   border-radius: 2px;
 }
+#register_btn {
+  display: none;
+}
 .vertical_line {
   border-right: 1px solid #ffffffaa;
   grid-column-start: 7;
@@ -312,6 +320,19 @@ export default {
     margin: 32px;
   }
   .vertical_line {
+    display: none;
+  }
+  #register_btn {
+    display: inline;
+    color: rgb(0, 136, 207);
+    background: #fff;
+    transition: 0.2s;
+  }
+  #register_btn:hover {
+    background: rgb(0, 136, 207);
+    color: #fff;
+  }
+  #see_course_btn {
     display: none;
   }
 }
