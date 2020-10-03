@@ -28,8 +28,6 @@
         <div class="link">
           <a href="/">Go to home page</a>
         </div>
-        <div class="link"><a href="">All Our Bootcamp</a></div>
-        <div class="link"><a href="">Blog</a></div>
         <div class="link"><a href="">Contact Us</a></div>
         <div class="link"><a href="/dashboard">Dashboard</a></div>
         <div class="link" v-if="isAuthenticated">
