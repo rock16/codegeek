@@ -121,7 +121,8 @@ export default {
           password: this.user.password,
         });
       } catch (error) {
-        this.loginErrMsg = error.message;
+        this.$store.commit("setLoginErrMsg", error.message);
+        this.$store.commit("setLoginErr", true);
       }
     },
     signUp() {
@@ -131,7 +132,8 @@ export default {
         }
         this.$store.dispatch("signUp", this.newUser);
       } catch (error) {
-        this.loginErrMsg = error.message;
+        this.$store.commit("setLoginErrMsg", error.message);
+        this.$store.commit("setLoginErr", true);
       }
     },
   },

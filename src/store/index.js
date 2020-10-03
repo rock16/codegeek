@@ -4,9 +4,6 @@ import * as fb from "../js/firebase";
 import router from "../router";
 
 Vue.use(Vuex);
-//const courseImgUrl = [
-//"https://firebasestorage.googleapis.com/v0/b/codegeekxyz.appspot.com/o/courseImg%2Ffrontend.jpg?alt=media&token=329c2325-d799-4b7c-b96f-327a4633ad12",
-//];
 
 const store = new Vuex.Store({
   state: {
@@ -108,7 +105,6 @@ const store = new Vuex.Store({
         .doc(user.uid)
         .set({ email: form.email, name: form.fullname, myCourse: {} });
       dispatch("fetchUserProfile", user);
-      commit("setSignUpLoading", false);
     },
     async fetchCourseDetail({ commit }) {
       let allCourses = {};
@@ -141,8 +137,6 @@ const store = new Vuex.Store({
     async enrol({ commit }, courseData) {
       const userId = fb.auth.currentUser.uid;
       //const docId = `${userId}_${course.id}`
-
-      // check if enrolled previously
 
       // create course
       let myCourse = this.state.userProfile.myCourse;
