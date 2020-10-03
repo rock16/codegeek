@@ -50,9 +50,35 @@
     </section>
     <section class="sponsors">
       <h2>sponsors</h2>
-      <div>
-        <a href="/">Cafe Dess't</a>
-        <a href="/" class="fib">fibdigit</a>
+      <div class="sponsors_items">
+        <a href="https://fibdigit.xyz" class="sponsor_link">
+          <div class="sponsor_content">
+            <img
+              src="../assets/images/fibdigit.png"
+              alt=""
+              width="60"
+              height="60"
+              class="sponsor_logo"
+            />
+            <div class="sponsor_name">
+              Cafe Dess't Computer
+            </div>
+          </div>
+        </a>
+        <a href="https://fibdigit.xyz" class="sponsor_link">
+          <div class="sponsor_content">
+            <img
+              src="../assets/images/fibdigit.png"
+              alt=""
+              width="60"
+              height="60"
+              class="sponsor_logo"
+            />
+            <div class="sponsor_name">
+              fibdigit
+            </div>
+          </div>
+        </a>
       </div>
     </section>
   </div>
@@ -187,7 +213,6 @@ export default {
   letter-spacing: -1px;
   margin: 0px 0px 15px;
   font-weight: 600;
-  text-decoration: none;
 }
 .call_to_action_content p,
 .changing_content p {
@@ -206,18 +231,33 @@ export default {
 }
 .sponsors {
   display: block;
+  min-height: 40vh;
 }
 .sponsors h2 {
+  color: #999999;
+  font-size: 32px;
+  line-height: 20px;
+  margin: 0px 0px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
   text-align: center;
 }
-.sponsors div {
+.sponsors .sponsors_items {
   display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 24px;
+  justify-content: space-around;
+  padding: 32px;
 }
-.sponsors div .fib {
-  padding-left: 32px;
+.sponsors .sponsors_items .sponsor_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.sponsors .sponsors_items .sponsor_content .sponsor_name {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 24px;
 }
 .tech_courses {
   position: relative;
@@ -282,6 +322,28 @@ export default {
   }
   .changing_content {
     display: none;
+  }
+  .sponsors .sponsors_items {
+    padding: 16px;
+  }
+  .call_to_action_content h1 {
+    font-size: 28px;
+    text-align: center;
+    line-height: 38px;
+  }
+  .call_to_action_content p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 420px) {
+  .sponsors .sponsors_items {
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 32px;
+  }
+  .sponsors .sponsors_items .sponsor_content {
+    padding-bottom: 16px;
   }
 }
 
