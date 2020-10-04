@@ -161,8 +161,12 @@ const store = new Vuex.Store({
         });
     },
     async fetchBootcampResource({ commit }, name) {
-      const bootcampResource = await fb.bootcampResCollection.doc(name).get();
-      commit("setBootcampResource", bootcampResource);
+      await fb.bootcampResCollection
+        .doc(name)
+        .get()
+        .then((doc) => {
+          commit("setBootcampResource", doc.data());
+        });
     },
   },
   modules: {},

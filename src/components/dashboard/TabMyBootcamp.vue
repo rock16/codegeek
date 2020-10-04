@@ -54,6 +54,7 @@ export default {
       return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
     },
     goToResource(evnt, title) {
+      this.$store.dispatch("fetchBootcampResource", title);
       this.$router.push({ name: "Resource", params: { resource: title } });
     },
   },

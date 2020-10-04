@@ -28,7 +28,7 @@ const cloudStore = firebase.storage().ref();
 const courseCollection = db.collection("courses");
 const courseCollectionDetail = db.collection("courseDetail");
 const userCollection = db.collection("users");
-const bootcampResCollection = db.collection("courseResource");
+const bootcampResCollection = db.collection("bootcampResources");
 
 // export utill and collections
 export {

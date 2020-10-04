@@ -9,17 +9,16 @@
       <ul class="timeline">
         <!-- Item 2 -->
         <li v-for="(moduleItem, index) in bootcampModule" :key="index">
-          <div class="direction-r">
+          <div :class="giveDirection(index)">
             <div class="flag-wrapper">
               <span class="hexa"></span>
-              <span class="flag">Lorem ipsum Anim.</span>
+              <span class="flag">{{ moduleItem.flag }}</span>
               <span class="time-wrapper"
-                ><span class="time">Module 1</span></span
+                ><span class="time">Module {{ index }}</span></span
               >
             </div>
             <div class="desc">
-              Click on these links to download the files you need for this
-              module. <span><a href="">Vs-code</a></span
+              {{ moduleItem.desc }} <span><a href="">Vs-code</a></span
               ><span><a href="">images</a></span
               ><span><a href="">text book</a></span>
             </div>
@@ -45,12 +44,15 @@ export default {
   props: ["resource"],
   data() {
     return {
+      modulePos: ["direction-r", "direction-l"],
       bootcamp: {},
       isResource: false,
-      bootcampModule: {},
     };
   },
   methods: {
+    giveDirection(index) {
+      return this.modulePos[index % 2];
+    },
     findCourse(val) {
       this.bootcamp = this.featuredCourses.find(function(item) {
         return item.title.trim() === val.trim();
@@ -58,7 +60,7 @@ export default {
     },
     getResource() {
       if (this.resource && this.bootcamp.resource) {
-        this.bootcampModule = this.bootcampResource;
+        this.$store.dispatch("fetchBootcampResource", this.resource);
       }
     },
   },
@@ -67,6 +69,9 @@ export default {
       featuredCourses: (state) => state.featuredCourses,
       bootcampResource: (state) => state.bootcampResource,
     }),
+    bootcampModule() {
+      return this.bootcampResource.modules;
+    },
   },
   created() {
     this.findCourse(this.resource);
@@ -288,7 +293,6 @@ header p {
   margin: 4px 0 0 0;
   z-index: 14;
   line-height: 1em;
-  vertical-align: middle;
   color: #fff;
 }
 
