@@ -172,6 +172,10 @@ export default {
   padding: 6px 60px;
   align-self: center;
 }
+.box1,
+.box2 {
+  letter-spacing: 0px;
+}
 .call_to_action_content {
   grid-column-start: 1;
   grid-column-end: 7;
@@ -206,6 +210,7 @@ export default {
   font-size: 13px;
   font-weight: 600;
   border-radius: 2px;
+  letter-spacing: -1px;
 }
 #register_btn {
   display: none;
@@ -227,7 +232,7 @@ export default {
   font-size: 20px;
   padding: 0px 0px;
   margin: 0px 0px 30px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 30px;
 }
 .call_to_action_content h2,
@@ -349,12 +354,13 @@ export default {
   }
   .call_to_action_content h1 {
     font-size: 28px;
-    text-align: center;
+    text-align: left;
     line-height: 38px;
   }
   .call_to_action_content p {
     font-size: 18px;
     line-height: 24px;
+    font-weight: 400;
   }
 }
 @media (max-width: 420px) {

@@ -6,12 +6,12 @@ const imgUrl = {
   },
   "Android App Development with Flutter Bootcamp": {
     price: "N10000",
-    duration: "2 Months",
+    duration: "2Months",
   },
   "Robotics and Arduino Bootcamp": { price: "N4,000", duration: "4weeks" },
   "Fullstack Web Developer Bootcamp": {
     price: "N10,000",
-    duration: "2 Months",
+    duration: "2Months",
   },
 };
 

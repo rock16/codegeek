@@ -16,6 +16,7 @@ const store = new Vuex.Store({
     loginErrMsg: "",
     loginLoading: false,
     signUpLoading: false,
+    bootcampResource: {},
   },
   mutations: {
     setFeaturedCourses(state, val) {
@@ -47,6 +48,9 @@ const store = new Vuex.Store({
     },
     setSignUpLoading(state, val) {
       state.signUpLoading = val;
+    },
+    setBootcampResource(state, val) {
+      state.bootcampResource = val;
     },
   },
   actions: {
@@ -155,6 +159,10 @@ const store = new Vuex.Store({
         .then(function() {
           commit("setUserCourses", myCourse);
         });
+    },
+    async fetchBootcampResource({ commit }, name) {
+      const bootcampResource = await fb.bootcampResCollection.doc(name).get();
+      commit("setBootcampResource", bootcampResource);
     },
   },
   modules: {},

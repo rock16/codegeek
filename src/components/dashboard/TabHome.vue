@@ -42,7 +42,10 @@
             size="4x"
             id="font_gitter"
           />
-          <h3>Gitter</h3>
+          <a
+            href="https://gitter.im/codegeekandxyz/community?utm_source=share-link&utm_medium=link&utm_campaign=share-link"
+            ><h3>Gitter</h3></a
+          >
         </div>
         <div>
           <font-awesome-icon
