@@ -2,9 +2,13 @@
   <div id="dashboard">
     <section>
       <h3>Find your perfect Bootcamp</h3>
-      <swiper class="swiper" :options="swiperOption">
+      <swiper
+        class="swiper"
+        :options="swiperOption"
+        style="height: fit-content"
+      >
         <swiper-slide
-          style="height: fit-content"
+          style="height: fit-content;"
           v-for="(bootcamp, index) in featuredBootcamp"
           :key="index"
         >
@@ -142,6 +146,9 @@ section h3 {
   width: 300px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+}
+.swiper_wrapper {
+  height: auto !important;
 }
 .swiper-slide img {
   position: relative;

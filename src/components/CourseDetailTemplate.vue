@@ -66,7 +66,6 @@
       <ul>
         <li v-for="(project, index) in detail.detailBuild.list" :key="index">
           <div class="Bx">
-            <img src="@/assets/images/web/calculator.png" alt="" />
             <p>{{ project.name }}</p>
           </div>
         </li>
@@ -106,10 +105,13 @@ export default {
       this.$store.commit("setCourse", this.course);
       this.$router.push("/enrol");
     },
-    objectIsEmpty(value) {
-      return (
-        value && Object.keys(value).length === 0 && value.constructor === Object
-      );
+    hasCourse(value) {
+      console.log(this);
+      const found = this.userProfile.myCourse.find((ele) => {
+        return ele.title.toLowerCase() === value.toLowerCase();
+      });
+      console.log(found);
+      return found;
     },
   },
   computed: {
@@ -118,10 +120,11 @@ export default {
         return state.allCourseDetails[this.course];
       },
       userProfile: (state) => state.userProfile,
-      isEnrolled: function() {
-        return this.userProfile.myCourse.length > 0;
-      },
     }),
+    isEnrolled() {
+      const item = this.hasCourse(this.course);
+      return item;
+    },
     isAuthenticated() {
       return Object.keys(this.userProfile).length > 0;
     },

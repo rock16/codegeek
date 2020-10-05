@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 
 //utils
 const db = firebase.firestore();
-//db.enablePersistence();
+db.enablePersistence();
 const auth = firebase.auth();
 const cloudStore = firebase.storage().ref();
 
