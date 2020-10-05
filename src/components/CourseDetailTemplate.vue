@@ -119,7 +119,7 @@ export default {
       },
       userProfile: (state) => state.userProfile,
       isEnrolled: function() {
-        return this.userProfile.myCourse[this.course] ? true : false;
+        return this.userProfile.myCourse.length > 0;
       },
     }),
     isAuthenticated() {

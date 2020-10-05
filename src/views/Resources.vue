@@ -2,8 +2,8 @@
   <div id="resource">
     <section v-if="bootcamp.resource" class="resource_available">
       <header>
-        <p>Worked on all modern browers</p>
-        <h1>Bootcamp modules resources link</h1>
+        <p>At Dess't computer Y-Junction</p>
+        <h1>Module resources for {{ bootcamp.title }}</h1>
       </header>
 
       <ul class="timeline">
@@ -18,9 +18,10 @@
               >
             </div>
             <div class="desc">
-              {{ moduleItem.desc }} <span><a href="">Vs-code</a></span
-              ><span><a href="">images</a></span
-              ><span><a href="">text book</a></span>
+              {{ moduleItem.desc }}.
+              <span v-for="(item, index) in moduleItem.links" :key="index"
+                ><a :href="item.href">{{ item.name }},</a></span
+              >
             </div>
           </div>
         </li>
@@ -28,10 +29,9 @@
     </section>
     <section v-else class="resource_content">
       <h2>
-        Files and Resources are not available for
-        <span>{{ bootcamp.title }}</span> yet. Please check back two days before
-        <span>{{ bootcamp.date }}</span
-        >.
+        Files and Resources for
+        <span>{{ bootcamp.title }}</span> are not available yet. Please check
+        back later.
       </h2>
       <router-link to="/dashboard">Go To Dashboard</router-link>
     </section>
@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       modulePos: ["direction-r", "direction-l"],
-      bootcamp: {},
       isResource: false,
     };
   },
@@ -53,29 +52,15 @@ export default {
     giveDirection(index) {
       return this.modulePos[index % 2];
     },
-    findCourse(val) {
-      this.bootcamp = this.featuredCourses.find(function(item) {
-        return item.title.trim() === val.trim();
-      });
-    },
-    getResource() {
-      if (this.resource && this.bootcamp.resource) {
-        this.$store.dispatch("fetchBootcampResource", this.resource);
-      }
-    },
   },
   computed: {
     ...mapState({
-      featuredCourses: (state) => state.featuredCourses,
       bootcampResource: (state) => state.bootcampResource,
+      bootcamp: (state) => state.bootcamp,
     }),
     bootcampModule() {
       return this.bootcampResource.modules;
     },
-  },
-  created() {
-    this.findCourse(this.resource);
-    this.getResource();
   },
 };
 </script>

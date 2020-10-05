@@ -21,7 +21,7 @@ const routes = [
     component: lazyLoad("views", "Home"),
   },
   {
-    path: "resources/:resource",
+    path: "/resources/:resource",
     name: "Resource",
     component: lazyLoad("views", "Resources"),
     props: true,
@@ -65,6 +65,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
   const requireCourse = to.name === "ProgramDetail";
+  const resourceLink = to.name === "Resource";
   if (requiresAuth && !auth.currentUser) {
     next("/login");
   } else {
@@ -72,6 +73,9 @@ router.beforeEach((to, from, next) => {
     if (requireCourse && objectIsEmpty(store.state.allCourseDetails)) {
       store.dispatch("fetchCourseDetail");
       console.log("in requireCourse router");
+    } else if (resourceLink && objectIsEmpty(store.state.bootcampResource)) {
+      const resourceName = to.params.resource;
+      store.dispatch("fetchBootcampResource", resourceName);
     }
     next();
   }

@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     loginLoading: false,
     signUpLoading: false,
     bootcampResource: {},
+    bootcamp: { resource: false, title: "unknown" },
   },
   mutations: {
     setFeaturedCourses(state, val) {
@@ -51,6 +52,10 @@ const store = new Vuex.Store({
     },
     setBootcampResource(state, val) {
       state.bootcampResource = val;
+      state.bootcamp = { resource: true, title: val.name };
+    },
+    noBootcampResource(state, val) {
+      state.bootcamp = { resource: false, title: val };
     },
   },
   actions: {
@@ -107,7 +112,7 @@ const store = new Vuex.Store({
 
       await fb.userCollection
         .doc(user.uid)
-        .set({ email: form.email, name: form.fullname, myCourse: {} });
+        .set({ email: form.email, name: form.fullname, myCourse: [] });
       dispatch("fetchUserProfile", user);
     },
     async fetchCourseDetail({ commit }) {
@@ -144,12 +149,12 @@ const store = new Vuex.Store({
 
       // create course
       let myCourse = this.state.userProfile.myCourse;
-      myCourse[this.state.course] = {
+      myCourse.unshift({
         title: this.state.course,
         paid: false,
         price: courseData.price,
         duration: courseData.duration,
-      };
+      });
       console.log("in store enroll");
       await fb.userCollection
         .doc(userId)
@@ -165,7 +170,11 @@ const store = new Vuex.Store({
         .doc(name)
         .get()
         .then((doc) => {
-          commit("setBootcampResource", doc.data());
+          if (doc.exists) {
+            commit("setBootcampResource", doc.data());
+          } else {
+            commit("noBootcampResource", name);
+          }
         });
     },
   },

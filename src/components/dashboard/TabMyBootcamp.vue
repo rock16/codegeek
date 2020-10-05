@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     isEmpty(obj) {
-      return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+      return obj.length === 0;
     },
     goToResource(evnt, title) {
       this.$store.dispatch("fetchBootcampResource", title);
