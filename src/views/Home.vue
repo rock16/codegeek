@@ -28,8 +28,8 @@
             <a href="#tech_courses" class="btn" id="see_course_btn"
               >See our courses</a
             >
-            <a href="#tech_courses" class="btn" id="register_btn"
-              >Register for Free</a
+            <router-link to="/login" class="btn" id="register_btn"
+              >Register for Free</router-link
             >
           </div>
           <div class="vertical_line"></div>

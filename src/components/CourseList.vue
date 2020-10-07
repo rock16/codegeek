@@ -3,6 +3,7 @@
     <h2>Tech Stacks</h2>
     <h1>Featured program</h1>
     <p>Codegeek offers courses in some of the most in demand tech skills</p>
+    <CourseListSkeleton v-if="!featuredCourses" />
     <ul class="course_list">
       <li v-for="(course, index) in featuredCourses" :key="index">
         <div @click="seeDetails($event, course.title)">
@@ -17,13 +18,16 @@
         </div>
       </li>
     </ul>
-    <a href="#" class="see_all">See All</a>
   </div>
 </template>
 <script>
 import { mapState } from "vuex";
+import CourseListSkeleton from "@/components/CourseListSkeleton.vue";
 export default {
   name: "Home",
+  components: {
+    CourseListSkeleton,
+  },
   computed: {
     ...mapState(["featuredCourses"]),
   },
@@ -93,7 +97,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  max-width: 225px;
   bottom: 0;
   background: linear-gradient(to bottom, #90278e 0%, #0087cf 100%);
 }
