@@ -32,8 +32,7 @@
               />
               <p class="signup">
                 Don't have an account ?
-                <a href="#" @click="toggleForm">Sign Up.</a> Forgot password?
-                <a href="#" @click="modal">click here</a>
+                <a href="#" @click="toggleForm">Sign Up.</a>
               </p>
             </div>
           </div>
