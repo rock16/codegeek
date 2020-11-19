@@ -1,7 +1,7 @@
 name: github-deploy-action
 on: [push]
 jobs:
-    run-npm-build
+    run-npm-build:
         runs-on: ubuntu-latest
         steps:
             -uses: actions/checkout@v2
