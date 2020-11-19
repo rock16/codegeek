@@ -286,7 +286,7 @@ export default {
     bottom: 0;
     height: 100%;
     width: 100%;
-    background-image: url("../assets/BgImage/bg2.jpg");
+    background-image: url("../assets/BgImage/overlayImg.jpg");
     background-size: cover;
     background-position: center;
   }

@@ -23,7 +23,9 @@
         <h3>While you are waiting, you can</h3>
         <ul>
           <li>
-            <router-link to="/dashboard">Go to your Dashboard</router-link>
+            <router-link to="/dashboard" class="btn"
+              >Go to your Dashboard</router-link
+            >
           </li>
           <li>or students online discussion forum at slack</li>
           <li>
@@ -134,6 +136,13 @@ h3 {
   margin: 32px 0px;
   text-align: center;
   color: rgb(0, 136, 207);
+}
+.btn {
+  background: rgb(0, 136, 207);
+  padding: 10px 16px;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #ffffff;
 }
 @media (max-width: 768px) {
   .success {
