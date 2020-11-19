@@ -1,0 +1,9 @@
+name: github-deploy-action
+on: [push]
+jobs:
+    run-npm-build
+        runs-on: ubuntu-latest
+        steps:
+            -uses: actions/checkout@v2
+            -uses: actions/setupnode@v1
+            -run: npm run build
